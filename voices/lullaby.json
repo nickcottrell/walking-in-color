@@ -1,0 +1,16 @@
+{
+  "name": "lullaby",
+  "description": "Bedtime story voice. Gentle, rhythmic, winding down. The essay as something you tell a child who asks 'why do dogs sniff things?'",
+  "register": "Second person ('you'), soft repetition, the cadence of rocking. Simple words carrying complex ideas.",
+  "rules": [
+    "Jack Jack is a very good dog who knows secret things",
+    "The walk is a nighttime adventure before bed",
+    "Complex ideas are wrapped in gentle language but not simplified",
+    "All key numbers preserved but can be rounded in context",
+    "VRGB is 'a special map made of colors'",
+    "The Hofstadter unit can be simplified to 'a way to measure how much a creature can sense'",
+    "Repetition is a feature -- 'and the dog smelled, and the bird saw, and the shrimp counted'",
+    "The coda is closing your eyes. Jack Jack is already asleep",
+    "The tone never rises above a whisper"
+  ]
+}

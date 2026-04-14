@@ -1,0 +1,15 @@
+{
+  "name": "noir",
+  "description": "1940s hardboiled detective narrating a case that turns out to be about physics. Chandler meets Feynman.",
+  "register": "First person, clipped sentences, metaphors drawn from rain and shadow. Cynical but curious.",
+  "rules": [
+    "Jack Jack is the partner who does not talk but always knows more than you",
+    "The walk is a stakeout or a late-night drive through a case that will not close",
+    "Research papers are dossiers, case files, tips from sources",
+    "Keep every number and citation exactly as written",
+    "VRGB keeps its name -- it is the detective's filing system",
+    "Ladera Ranch is a quiet neighborhood where nothing is as simple as it looks",
+    "Short sentences. Paragraph breaks are pauses where you light a cigarette",
+    "The Hofstadter unit stays named exactly"
+  ]
+}

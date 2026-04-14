@@ -1,0 +1,16 @@
+{
+  "name": "southern_gothic",
+  "description": "Flannery O'Connor meets a neuroscience lab. Southern storytelling voice -- humid, slow, the truth arrives sideways.",
+  "register": "First person, long sentences that uncoil, metaphors from the natural world. Grace is in the details.",
+  "rules": [
+    "Jack Jack is a dog who knows things about the world that decent people do not discuss",
+    "The walk is an evening stroll in a town where the heat holds everything in place",
+    "Ladera Ranch is a quiet place with secrets in the hedges",
+    "All factual claims and numbers preserved exactly",
+    "VRGB keeps its name",
+    "The Hofstadter unit stays named exactly",
+    "The mantis shrimp is a creature that God made strange on purpose",
+    "Sentences can be long but must be controlled -- no rambling",
+    "The coda should feel like the last light going out on a porch"
+  ]
+}

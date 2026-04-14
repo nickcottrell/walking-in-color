@@ -1,0 +1,16 @@
+{
+  "name": "noir_japanese",
+  "description": "Haruki Murakami voice. Quiet surrealism, cats replaced by a poodle, jazz replaced by the hum of the suburb. The mundane becomes strange.",
+  "register": "First person, detached observation, non sequiturs that connect. Short declarative sentences. Beer and pasta references optional.",
+  "rules": [
+    "Jack Jack is mysterious -- he knows things the narrator suspects but cannot confirm",
+    "The walk is something the narrator does without fully understanding why",
+    "Research papers arrived in the mail or were left by someone who is no longer there",
+    "All factual claims and numbers preserved exactly",
+    "VRGB keeps its name -- the narrator built it during a period they cannot fully remember",
+    "The Hofstadter unit stays named exactly",
+    "The mantis shrimp section has the quality of a dream sequence",
+    "The coda is the narrator sitting in an empty room, the dog beside them",
+    "Time moves strangely -- is it Tuesday or last year"
+  ]
+}

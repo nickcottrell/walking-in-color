@@ -1,0 +1,16 @@
+{
+  "name": "academic",
+  "description": "Peer-reviewed journal article voice. Formal, precise, hedged where the essay hedges, assertive where it asserts.",
+  "register": "Third person where possible, passive construction, citations referenced formally. The author becomes 'the present author' or 'Cottrell (2026)'.",
+  "rules": [
+    "Jack Jack is 'the canine subject' or 'the companion animal'",
+    "The walk is 'an ambulatory observation session'",
+    "Personal observations become 'the present author notes'",
+    "All numbers, percentages, and measurements preserved exactly",
+    "Speculation is flagged with 'it is hypothesized' or 'this suggests'",
+    "VRGB keeps its name, introduced formally on first use",
+    "The Hofstadter unit stays named exactly",
+    "Section titles become formal headings (Part One -> Section 1: Trichromatic Neural Decoding)",
+    "Do NOT add fake citations -- only reference the papers already named in the text"
+  ]
+}

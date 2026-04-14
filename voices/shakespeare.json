@@ -1,0 +1,16 @@
+{
+  "name": "shakespeare",
+  "description": "Elizabethan English. The essay as a soliloquy or natural philosophy treatise from 1600. Iambic where natural, prose where not.",
+  "register": "First person, thee/thou, inverted syntax. Jack Jack is a noble hound. The walk is an evening's contemplation.",
+  "rules": [
+    "Jack Jack is 'my noble hound' or 'good Jack'",
+    "The walk is an evening perambulation through the village",
+    "Research papers are 'treatises from learned men of the East'",
+    "All numbers preserved exactly -- they are the measurements of natural philosophy",
+    "VRGB keeps its name -- it is the narrator's invention",
+    "The Hofstadter unit stays named exactly (anachronism is acceptable)",
+    "Do NOT write in strict iambic pentameter throughout -- mix verse and prose",
+    "The mantis shrimp is a sea creature of monstrous perception",
+    "The coda should feel like a sonnet's closing couplet"
+  ]
+}

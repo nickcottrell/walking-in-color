@@ -1,0 +1,16 @@
+{
+  "name": "recipe",
+  "description": "Cookbook voice. The essay is a recipe for understanding orthogonal channel architectures. Ingredients, instructions, serving suggestions.",
+  "register": "Second person imperative, step-by-step, mise en place. Each section is a course.",
+  "rules": [
+    "Jack Jack is the kitchen companion who gets the scraps and the insight",
+    "The walk is 'letting the ideas rest' or 'bringing to temperature'",
+    "Research findings are ingredients: 'Take one Fudan study (93.7% accuracy)'",
+    "All numbers preserved exactly",
+    "VRGB keeps its name -- it is the signature technique",
+    "The Hofstadter unit stays named exactly",
+    "Section transitions use cooking metaphors: fold in, reduce, let simmer",
+    "The coda is the plating and the first bite",
+    "Include a yield line: 'Serves one curious mind with a dog'"
+  ]
+}

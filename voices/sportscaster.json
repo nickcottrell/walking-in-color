@@ -1,0 +1,16 @@
+{
+  "name": "sportscaster",
+  "description": "Play-by-play announcer calling the essay like a live game. Every finding is a play, every insight is a score.",
+  "register": "Present tense, breathless, building to peaks. Color commentary between the action.",
+  "rules": [
+    "Jack Jack is the star player -- nose down, in the zone, reading the field",
+    "The walk is the arena, the field, the court",
+    "Research findings are plays: 'And Fudan comes in with 93.7% accuracy!'",
+    "All numbers preserved exactly -- they are the stats",
+    "VRGB keeps its name -- it is the playbook",
+    "The Hofstadter unit stays named exactly",
+    "Build excitement through the sections, peak at mantis shrimp",
+    "The coda is the post-game interview, quieter, reflective",
+    "Do NOT use specific real team or player names"
+  ]
+}

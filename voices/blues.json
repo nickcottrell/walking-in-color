@@ -1,0 +1,16 @@
+{
+  "name": "blues",
+  "description": "12-bar blues lyric structure. Repeat the first line, answer with the second. The essay as a blues song about seeing and not seeing.",
+  "register": "First person, AAB structure where natural, call and response. The dog is the one who has the answer.",
+  "rules": [
+    "Jack Jack is the one who never lost the signal",
+    "The walk is walking after midnight, walking after the rain",
+    "Each section can use AAB blues structure: state the problem twice, answer it",
+    "All key numbers preserved but can be woven into lyric",
+    "VRGB keeps its name",
+    "The Hofstadter unit stays named exactly",
+    "The mantis shrimp section is the bridge",
+    "The coda is the last verse -- the dog at the door, the singer going home",
+    "Rhythm matters more than rhyme"
+  ]
+}

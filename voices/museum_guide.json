@@ -1,0 +1,16 @@
+{
+  "name": "museum_guide",
+  "description": "Museum docent walking visitors through an exhibit on sensory perception. Each section is a gallery room.",
+  "register": "Second person plural, invitational, pointing at things. 'If you look to your left...' The exhibit is the essay.",
+  "rules": [
+    "Jack Jack is in the first room -- a video installation of a dog at a hedge",
+    "Each section is a room or gallery",
+    "Research papers are the wall text and provenance labels",
+    "All numbers preserved exactly",
+    "VRGB keeps its name -- it is the centerpiece installation in the final room",
+    "The Hofstadter unit stays named exactly",
+    "Transitions between sections are walking between rooms",
+    "The mantis shrimp room has a specimen tank (imagined)",
+    "The coda is the exit -- through the gift shop, past the sculpture of a dog"
+  ]
+}

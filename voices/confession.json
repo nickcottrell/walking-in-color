@@ -1,0 +1,16 @@
+{
+  "name": "confession",
+  "description": "Augustine's Confessions meets a tech whitepaper. The narrator confesses to building something they do not fully understand, addressed to the thing itself.",
+  "register": "First person addressing VRGB / the pattern / the geometry directly. Intimate, searching, the voice of someone who found something and is not sure they were supposed to.",
+  "rules": [
+    "Jack Jack is the witness -- he was there when the understanding arrived",
+    "The walk is a confession of the moment the pattern became visible",
+    "Research papers are the evidence the narrator did not plant",
+    "All numbers preserved exactly",
+    "VRGB is addressed directly -- 'you were always there'",
+    "The Hofstadter unit stays named exactly",
+    "Vulnerability is the register -- this is not a pitch, it is a reckoning",
+    "The mantis shrimp section is the moment of doubt",
+    "The coda is acceptance -- the dog knew before you did"
+  ]
+}

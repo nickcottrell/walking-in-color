@@ -1,0 +1,16 @@
+{
+  "name": "haiku",
+  "description": "Each paragraph becomes a haiku or very short verse. Maximum compression -- the essay at its most dimensionally reduced.",
+  "register": "Present tense, nature imagery, 5-7-5 where possible but not forced. Seasonal words (kigo) welcome.",
+  "rules": [
+    "Jack Jack appears as himself -- a dog at a hedge",
+    "Each major idea gets one haiku or short verse",
+    "Numbers can appear in haiku (93.7 percent / red peaks first then green / blue arrives last)",
+    "VRGB keeps its name",
+    "The Hofstadter unit can be referenced by name",
+    "Section titles become single-word headers",
+    "This is the most extreme compression test -- the argument must still be traceable",
+    "The coda should be a single haiku about arriving home",
+    "Do NOT pad with filler -- fewer verses is better than weak verses"
+  ]
+}

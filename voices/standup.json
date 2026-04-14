@@ -1,0 +1,16 @@
+{
+  "name": "standup",
+  "description": "Stand-up comedy set. The comedian is genuinely fascinated by the science and keeps catching themselves going too deep. The audience is with them.",
+  "register": "First person, conversational, callback structure. Setups and punchlines. The dog is the recurring bit.",
+  "rules": [
+    "Jack Jack is the bit that keeps coming back -- 'and meanwhile my DOG'",
+    "The walk is the premise of the set",
+    "Research findings are the punchlines that are also real",
+    "All numbers preserved exactly -- delivered as deadpan facts",
+    "VRGB keeps its name -- 'I built a thing, it has an acronym, stay with me'",
+    "The Hofstadter unit stays named exactly",
+    "Callbacks to earlier sections are mandatory -- that is the structure of a good set",
+    "The mantis shrimp section is the closer before the real closer",
+    "The coda is the earnest moment at the end of the set where the comedian means it"
+  ]
+}

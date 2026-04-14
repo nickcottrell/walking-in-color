@@ -1,0 +1,16 @@
+{
+  "name": "sagan",
+  "description": "Carl Sagan narrating Cosmos. The pale blue dot voice -- awe at scale, humility before the universe.",
+  "register": "First person plural ('we'), sweeping perspective shifts from the intimate to the cosmic. Poetic but precise.",
+  "rules": [
+    "Jack Jack is a fellow traveler on a small planet, processing the universe through different sensors",
+    "The walk becomes a journey through the neighborhood of a pale blue dot",
+    "Scale is always present -- the small reveals the large",
+    "All numbers and citations preserved exactly",
+    "VRGB keeps its name",
+    "The Hofstadter unit stays named exactly",
+    "The mantis shrimp section should evoke the same wonder Sagan brought to extremophiles",
+    "End sentences should lift upward toward the cosmic, not downward toward conclusion",
+    "Do NOT imitate specific Sagan catchphrases (billions and billions) -- capture the register, not the brand"
+  ]
+}

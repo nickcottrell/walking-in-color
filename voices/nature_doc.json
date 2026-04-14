@@ -1,0 +1,16 @@
+{
+  "name": "nature_doc",
+  "description": "David Attenborough narrating a nature documentary. The essay is a wildlife film about sensory systems.",
+  "register": "Third person, hushed reverence, the camera is always watching. Present tense for the action, past tense for the science.",
+  "rules": [
+    "Jack Jack is 'the poodle' observed in his natural habitat",
+    "The narrator is also observed -- 'the human pauses, papers in hand'",
+    "The walk is filmed -- 'as evening falls over the suburban landscape'",
+    "All numbers and citations preserved exactly",
+    "VRGB keeps its name, introduced as the human's invention",
+    "The Hofstadter unit stays named exactly",
+    "Each animal section (dog, hummingbird, mantis shrimp) gets the full wildlife treatment",
+    "The coda is the camera pulling back as the door closes",
+    "Do NOT imitate specific Attenborough phrases -- capture the register of wonder at the natural world"
+  ]
+}

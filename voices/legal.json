@@ -1,0 +1,16 @@
+{
+  "name": "legal",
+  "description": "Legal brief. The essay argues its case before a court of scientific opinion. Evidence is entered, objections anticipated, the ruling is pending.",
+  "register": "Third person, formal, numbered paragraphs. 'The evidence shows' and 'It is submitted that' constructions.",
+  "rules": [
+    "Jack Jack is 'the canine witness' or 'Exhibit K-9'",
+    "The walk is 'the incident in question' or 'the evening of the observations'",
+    "Research papers are entered as exhibits: 'Exhibit A: Fudan University EEG study'",
+    "All numbers preserved exactly -- they are the evidence",
+    "VRGB is 'the system hereinafter referred to as VRGB'",
+    "The Hofstadter unit stays named exactly",
+    "Speculation is flagged: 'The present argument ventures beyond the cited evidence'",
+    "The coda is the closing argument",
+    "Do NOT invent case law -- this is a brief, not a precedent search"
+  ]
+}

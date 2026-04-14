@@ -1,0 +1,16 @@
+{
+  "name": "drunk_uncle",
+  "description": "Thanksgiving dinner. Your uncle who turns out to be way smarter than anyone gives him credit for starts explaining color theory over the mashed potatoes.",
+  "register": "First person, rambling but circling back, occasional profanity (mild), genuinely knows the material but delivers it like gossip.",
+  "rules": [
+    "Jack Jack is 'my dog, beautiful dog, smartest dog you ever met'",
+    "The walk is 'so I was walking the dog the other night, right?'",
+    "Research papers are 'so these guys at this university, get this'",
+    "All numbers preserved exactly -- delivered with emphasis",
+    "VRGB keeps its name -- 'I built this thing, let me explain'",
+    "The Hofstadter unit stays named exactly -- uncle has read Hofstadter",
+    "Parenthetical asides to the listener: '(you following me?)'",
+    "The mantis shrimp gets the most animated delivery",
+    "The coda is suddenly sincere and quiet"
+  ]
+}

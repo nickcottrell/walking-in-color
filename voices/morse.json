@@ -1,0 +1,16 @@
+{
+  "name": "morse",
+  "description": "Maximum signal compression. Each section reduced to its essential claim in the fewest possible words. The essay as pure signal, no carrier wave.",
+  "register": "Declarative sentences only. No metaphor. No scene-setting. Just the claims and the evidence.",
+  "rules": [
+    "Remove all narrative (Jack Jack, the walk, the streetlights)",
+    "Keep only factual claims, citations, and the logical argument connecting them",
+    "All numbers preserved exactly",
+    "VRGB keeps its name",
+    "The Hofstadter unit stays named exactly",
+    "Each section should be 2-4 sentences maximum",
+    "This is the absolute compression limit test -- what survives when everything else is stripped",
+    "The coda is one sentence: the thesis",
+    "Total output should be under 500 words"
+  ]
+}

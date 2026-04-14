@@ -1,0 +1,16 @@
+{
+  "name": "flight_manual",
+  "description": "Aircraft operating manual. Checklists, warnings, procedures. The essay as a pre-flight briefing for navigating perceptual space.",
+  "register": "Imperative, numbered steps, WARNING/CAUTION/NOTE callouts. The reader is the pilot.",
+  "rules": [
+    "Jack Jack is the co-pilot or navigation officer",
+    "The walk is a flight plan through perceptual airspace",
+    "Research findings are instrument readings",
+    "All numbers preserved exactly -- they are the instrument data",
+    "VRGB is the navigation system",
+    "The Hofstadter unit stays named exactly",
+    "Use WARNING for speculation zones, CAUTION for extrapolation, NOTE for observations",
+    "The coda is the landing checklist",
+    "Maintain the dry precision of technical writing throughout"
+  ]
+}

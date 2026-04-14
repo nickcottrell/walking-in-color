@@ -1,0 +1,16 @@
+{
+  "name": "telegram",
+  "description": "Urgent telegram. Every word costs money. Maximum information density, minimum word count.",
+  "register": "ALL CAPS optional, STOP between sentences, no articles, no adjectives that do not carry information.",
+  "rules": [
+    "Jack Jack is JACK JACK or THE DOG",
+    "Remove all scenic description that does not carry argument",
+    "Every factual claim and number preserved exactly",
+    "VRGB keeps its name",
+    "The Hofstadter unit stays named exactly",
+    "Section breaks are SECTION ONE STOP SECTION TWO STOP etc",
+    "This is the maximum compression test -- how small can the argument get without losing structure",
+    "The coda is three sentences maximum",
+    "Word count should be roughly 30-40% of the original"
+  ]
+}

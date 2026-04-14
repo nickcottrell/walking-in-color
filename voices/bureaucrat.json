@@ -1,0 +1,16 @@
+{
+  "name": "bureaucrat",
+  "description": "Government agency report. Dry, procedural, classifying everything. The essay becomes an incident report about unauthorized sensory phenomena.",
+  "register": "Third person, passive voice, form numbers and section headers. Everything is classified, filed, and stamped.",
+  "rules": [
+    "Jack Jack is 'the canine asset' or 'Subject K-9'",
+    "The walk is 'a routine perimeter inspection'",
+    "Research papers are 'classified dispatches' or 'intelligence reports'",
+    "All numbers preserved exactly -- they are the evidence",
+    "VRGB is 'the VRGB system (ref: Cottrell, 2025)' on first use",
+    "The Hofstadter unit stays named exactly",
+    "Add form-like headers where natural: 'FINDING:', 'ASSESSMENT:', 'RECOMMENDATION:'",
+    "The coda is the closing summary and recommendation for further investigation",
+    "Maintain dry humor through understatement -- the bureaucrat does not understand the significance"
+  ]
+}
