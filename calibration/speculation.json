@@ -1,0 +1,16 @@
+{
+  "global_ceiling": "high",
+  "global_slider": 62,
+  "source": "cue-vox session 2026-04-13",
+  "rationale": "The grounded moments (Jack Jack, the sidewalk, the jacarandas) earn the right to push into bigger territory at the peaks. Stephenson pattern: build pressure with concrete, then swing speculative.",
+  "per_section": {
+    "s00_opening":              { "ceiling": 0.10, "note": "Pure ground. No claims, just the walk." },
+    "s01_brains_rgb":           { "ceiling": 0.20, "note": "Data-driven. Let the Fudan numbers speak." },
+    "s02_dogs_computation":     { "ceiling": 0.40, "note": "Flagged extrapolation. 'Red threads on the wall' earns it." },
+    "s03_color_you_cant_see":   { "ceiling": 0.50, "note": "Emotional reach, not speculative. 'Feel something' before thinking." },
+    "s04_what_engineers_found":  { "ceiling": 0.30, "note": "Convergence is factual. The claim is in the juxtaposition, not the speculation." },
+    "s05_mantis_shrimp_problem": { "ceiling": 0.85, "note": "Speculative peak. Hofstadter unit. This is where the essay earns full Stephenson." },
+    "s06_what_im_building":     { "ceiling": 0.70, "note": "Practical and uncertain. 'Mad scientist' framing gives permission." },
+    "s07_coda":                 { "ceiling": 0.15, "note": "Return to ground. The dog at the door. Resolve, don't reach." }
+  }
+}

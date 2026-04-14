@@ -1,0 +1,14 @@
+{
+  "total_words": 4200,
+  "distribution_method": "per-section word budget based on structural role",
+  "per_section": {
+    "s00_opening":              { "words": 320, "pct": 7.6,  "note": "Tight. Get in, set the scene, get to the dog." },
+    "s01_brains_rgb":           { "words": 520, "pct": 12.4, "note": "Room for the data and the VRGB introduction." },
+    "s02_dogs_computation":     { "words": 580, "pct": 13.8, "note": "Longest evidence section. Needs space for the extrapolation flag." },
+    "s03_color_you_cant_see":   { "words": 480, "pct": 11.4, "note": "Emotional density over word count. Every sentence earns its place." },
+    "s04_what_engineers_found":  { "words": 500, "pct": 11.9, "note": "The convergence argument. Precise, not padded." },
+    "s05_mantis_shrimp_problem": { "words": 620, "pct": 14.8, "note": "Speculative peak gets the most space. Tradeoff matrix plus Hofstadter unit." },
+    "s06_what_im_building":     { "words": 560, "pct": 13.3, "note": "The practical claim. Room for uncertainty and the ABITS reference." },
+    "s07_coda":                 { "words": 320, "pct": 7.6,  "note": "Same budget as opening. Symmetry. The walk is a loop." }
+  }
+}

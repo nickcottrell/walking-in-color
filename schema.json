@@ -1,0 +1,97 @@
+{
+  "title": "Walking Through Color",
+  "author": "Nick Cottrell",
+  "version": "2.0.0",
+  "draft": "DRAFT2",
+  "description": "An essay about orthogonal channel architectures in biological sensory systems, engineered communication systems, and semantic coordinate spaces. Written on a walk with a Standard Poodle named Jack Jack.",
+  "total_words": 4200,
+  "sections": [
+    {
+      "id": "s00",
+      "slug": "opening",
+      "title": "Opening",
+      "subtitle": "The walk, Jack Jack, the setup",
+      "word_budget": 320,
+      "density_hex": "#3A3A3A",
+      "role": "anchor",
+      "notes": "Establishes the walk, the dog, the research question. Signal processing vocabulary (multiplexes, resolves) foreshadows WDM section. Thesis stated plainly: pattern matching vs actually seeing something."
+    },
+    {
+      "id": "s01",
+      "slug": "brains-rgb",
+      "title": "Part One: The Brain's RGB",
+      "subtitle": "Fudan EEG study, trichromatic sequencing",
+      "word_budget": 520,
+      "density_hex": "#454545",
+      "role": "evidence",
+      "notes": "First concrete anchor. 93.7% decoding accuracy, sequential timing (R:190ms G:215ms B:238ms). Introduces VRGB as consequence of biology, not invention. The line 'I was being inevitable' is the spine."
+    },
+    {
+      "id": "s02",
+      "slug": "dogs-computation",
+      "title": "Part Two: The Dog's Computation",
+      "subtitle": "Nasal fluid dynamics, 811 receptor genes, combinatorial space",
+      "word_budget": 580,
+      "density_hex": "#505050",
+      "role": "evidence",
+      "notes": "Flagged extrapolation zone ('red threads on the wall'). 811 receptor genes as combinatorial not parallel. The fire hydrant as tamper-proof chain. Jack Jack running a query."
+    },
+    {
+      "id": "s03",
+      "slug": "color-you-cant-see",
+      "title": "Part Three: The Color You Can't See",
+      "subtitle": "Hummingbird tetrachromacy, Princeton field study",
+      "word_budget": 480,
+      "density_hex": "#5A5A5A",
+      "role": "expansion",
+      "notes": "Emotional pivot -- 'first I need to make you feel something.' 30% of plumage color is invisible to trichromats. Tetrahedron vs triangle geometry. Incommensurable perceptual worlds."
+    },
+    {
+      "id": "s04",
+      "slug": "what-engineers-found",
+      "title": "Part Four: What the Engineers Found",
+      "subtitle": "Visible light communication, wavelength division multiplexing",
+      "word_budget": 500,
+      "density_hex": "#606060",
+      "role": "convergence",
+      "notes": "The independent-discovery argument. Three orthogonal wavelengths in fiber optics = same architecture as retina/nose/eye. 'The principle is the same. The substrate is different.' This is where the essay earns its central claim."
+    },
+    {
+      "id": "s05",
+      "slug": "mantis-shrimp-problem",
+      "title": "Part Five: The Mantis Shrimp Problem",
+      "subtitle": "Parallel lookup vs continuous space tradeoff",
+      "word_budget": 620,
+      "density_hex": "#6A6A6A",
+      "role": "complication",
+      "notes": "The counterargument section. 16 photoreceptors but not richer color -- categorical speed vs continuous nuance. Introduces the Hofstadter unit. This is the speculative peak -- earned by four sections of concrete evidence."
+    },
+    {
+      "id": "s06",
+      "slug": "what-im-building",
+      "title": "Part Six: What I Think I'm Building",
+      "subtitle": "VRGB as native-dimensionality coordinate system, compression steering",
+      "word_budget": 560,
+      "density_hex": "#757575",
+      "role": "synthesis",
+      "notes": "The practical claim. 16.7M positions, Euclidean distance as semantic measure, compression steering for quantized models. Honest about uncertainty ('I'm still looking at the red threads'). References A Bridge in the Sky as test case."
+    },
+    {
+      "id": "s07",
+      "slug": "coda",
+      "title": "Coda",
+      "subtitle": "Jack Jack at the door",
+      "word_budget": 320,
+      "density_hex": "#404040",
+      "role": "anchor",
+      "notes": "Returns to sodium orange, returns to the dog. Resolves pattern-matching vs seeing-something tension from opening. 'We share a sidewalk.' The walk completes."
+    }
+  ],
+  "arc": {
+    "description": "Grounded anchor -> evidence pressure -> speculative peak -> grounded return. Stephenson pattern: earn the reach by building concrete pressure first.",
+    "tension_peak": "s05",
+    "speculation_peak": "s05",
+    "emotional_peak": "s03",
+    "convergence_point": "s04"
+  }
+}

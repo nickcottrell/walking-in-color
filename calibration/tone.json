@@ -1,0 +1,14 @@
+{
+  "axis": ["grounded", "lyrical"],
+  "description": "Grounded = concrete data, citations, mechanical. Lyrical = rhythmic, emotional, the dog, the streetlights.",
+  "per_section": {
+    "s00_opening":              { "tone": 0.75, "label": "lyrical",   "note": "The walk sets the rhythm. Conversational, embodied." },
+    "s01_brains_rgb":           { "tone": 0.35, "label": "grounded",  "note": "EEG data, millisecond timing. Let the numbers land." },
+    "s02_dogs_computation":     { "tone": 0.45, "label": "balanced",  "note": "Technical but alive. 'Running a query' is the lyrical punch." },
+    "s03_color_you_cant_see":   { "tone": 0.70, "label": "lyrical",   "note": "Emotional pivot. 'Every face you love.' Earn the feeling." },
+    "s04_what_engineers_found":  { "tone": 0.30, "label": "grounded",  "note": "Engineering precision. The juxtaposition does the work." },
+    "s05_mantis_shrimp_problem": { "tone": 0.55, "label": "balanced",  "note": "Analytical but building to a big idea. The Hofstadter line needs both registers." },
+    "s06_what_im_building":     { "tone": 0.50, "label": "balanced",  "note": "Honest, uncertain, practical. 'Mad scientist' is self-aware." },
+    "s07_coda":                 { "tone": 0.85, "label": "lyrical",   "note": "Sodium orange, the water bowl, the front door. Pure return." }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "sources": [
+    {
+      "key": "fudan-eeg-rgb",
+      "section": "s01_brains_rgb",
+      "title": "Decoding of the neural representation of the visual RGB color model",
+      "authors": "Fudan University researchers",
+      "journal": "PeerJ",
+      "finding": "93.7% accuracy decoding R/G/B from EEG. Sequential timing: R at 190ms, G at 215ms, B at 238ms post-stimulus.",
+      "file": "PeerJ Decoding of the neural representation of the visual RGB color model.pdf"
+    },
+    {
+      "key": "nagaoka-canine-nasal",
+      "section": "s02_dogs_computation",
+      "title": "3D X-ray CT and fluid dynamics simulation of canine nasal cavity airflow",
+      "authors": "Nagaoka University of Technology researchers",
+      "journal": "Frontiers in Physics",
+      "finding": "Three simultaneous airflow routes in dog nasal cavity: fast (gas exchange), slow (humidification), turbulent (odor collection via turbinates).",
+      "file": "fphy-09-731405.pdf"
+    },
+    {
+      "key": "princeton-hummingbird",
+      "section": "s03_color_you_cant_see",
+      "title": "Wild hummingbirds discriminate nonspectral colors",
+      "authors": "Stoddard et al.",
+      "journal": "Proceedings of the National Academy of Sciences",
+      "year": 2020,
+      "finding": "Field experiments confirmed hummingbirds discriminate UV+visible nonspectral colors invisible to trichromats. Tetrahedral color space geometry.",
+      "file": "stoddard-et-al-2020-wild-hummingbirds-discriminate-nonspectral-colors.pdf"
+    },
+    {
+      "key": "quanzhou-vlc-wdm",
+      "section": "s04_what_engineers_found",
+      "title": "Visible light communication using RGB wavelength division multiplexing",
+      "authors": "Quanzhou Normal University researcher",
+      "finding": "60 Gbps over 500m fiber using three RGB laser diodes (650nm, 530nm, 450nm) with polarization multiplexing. Three orthogonal wavelengths = independent channels.",
+      "file": "1-s2.0-S3050475925007146-main.pdf"
+    },
+    {
+      "key": "vrgb-whitepaper",
+      "section": "s06_what_im_building",
+      "title": "VRGB: Visual RGB Colorspace as Semantic Coordinate System",
+      "authors": "Nick Cottrell",
+      "year": 2025,
+      "finding": "16.7M hex positions as semantic vectors. Euclidean distance as conceptual relatedness. Compression steering via coordinate geometry.",
+      "file": "VRGB-whitepaper.md"
+    }
+  ]
+}
