@@ -310,3 +310,42 @@ class TestSchemaConsistency:
             path = os.path.join(build.SECTIONS_DIR, filename)
             assert os.path.exists(path), \
                 "Missing source file: {}".format(filename)
+
+
+class TestMissingEdgeCases:
+    """Edge cases that should be covered independent of model availability."""
+
+    def test_coord_key_normalizes_hyphenated_slug(self):
+        """coord_key should normalize dashes to underscores."""
+        section = {"id": "s99", "slug": "hyphen-heavy-slug"}
+        assert build.coord_key(section) == "s99_hyphen_heavy_slug"
+
+    def test_build_substack_appends_repo_footer(self):
+        """Substack output should include a repo link footer."""
+        essay = "hello world"
+        out = build.build_substack(essay)
+        assert out.startswith("hello world")
+        assert build.REPO_URL in out
+        assert "Source, schema, and steering coordinates" in out
+
+    def test_verify_reports_line_mismatch(self, monkeypatch, capsys):
+        """verify should report the first differing line number and values."""
+        fake_schema = {
+            "sections": [
+                {"id": "s00", "slug": "opening"},
+                {"id": "s01", "slug": "brains-rgb"},
+            ]
+        }
+        monkeypatch.setattr(build, "load_json", lambda _: fake_schema)
+        monkeypatch.setattr(
+            build,
+            "load_section",
+            lambda sid, slug: {"s00": "line one", "s01": "line two"}[sid],
+        )
+
+        ok = build.verify("line one\n\nLINE TWO")
+        captured = capsys.readouterr().out
+        assert not ok
+        assert "FAIL at line 3:" in captured
+        assert "expected: line two" in captured
+        assert "got:      LINE TWO" in captured
