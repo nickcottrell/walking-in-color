@@ -83,6 +83,7 @@ def ollama_generate(prompt, system_prompt=None):
             "repeat_penalty": 1.0,
             "num_predict": 2048,
             "num_thread": 1,
+            "num_gpu": 0,
         },
     }
     if system_prompt:
