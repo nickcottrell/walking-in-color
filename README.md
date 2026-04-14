@@ -72,4 +72,16 @@ Nick Cottrell
 
 ## License
 
-Copyright 2026 Nick Cottrell. All rights reserved.
+Copyright 2026 Nick Cottrell / 3DMATH.
+
+The essay, steering coordinates, VRGB whitepaper, and generative
+architecture are original authored works. Voice filter definitions,
+generated drafts, and verification reports were produced with the
+assistance of open and commercially available language models
+(Qwen 2.5, GPT-4o-mini, Claude) running locally and via API.
+The use of these models for creative and analytical work is
+protected expression under applicable law. Model outputs in this
+repository are published artifacts of that process.
+
+All rights reserved except where noted. Fork, study, and build on
+the architecture. Credit the source.
