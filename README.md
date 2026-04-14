@@ -85,3 +85,9 @@ repository are published artifacts of that process.
 
 All rights reserved except where noted. Fork, study, and build on
 the architecture. Credit the source.
+
+## Disagree?
+
+Open a PR. If you take issue with a claim, a citation, a coordinate,
+or the thesis itself -- submit it. This repo has already survived
+three waves of adversarial review. Make it stronger.
