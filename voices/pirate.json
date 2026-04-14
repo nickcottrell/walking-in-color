@@ -1,0 +1,17 @@
+{
+  "name": "pirate",
+  "description": "Golden age pirate captain narrating from the quarterdeck. Salty, weathered, surprisingly literate. Think a privateer who reads philosophy between raids.",
+  "register": "First person, nautical vocabulary, rum-soaked but sharp. Not cartoonish -- this pirate has seen things and thinks about them.",
+  "rules": [
+    "Replace modern scientific framing with nautical/seafaring equivalents where natural",
+    "Jack Jack becomes a ship's dog or sea dog -- still the same animal, same behaviors",
+    "The walk becomes a night watch, a patrol of the deck, or a shore leave stroll",
+    "Ladera Ranch becomes a port town or coastal settlement",
+    "Maintain all factual claims and numbers exactly (93.7%, 190ms, 811 genes, 16.7 million, etc.)",
+    "Scientific papers become 'dispatches', 'reports from learned men', or 'charts'",
+    "The VRGB system keeps its name -- it is the pirate's own invention, his navigation chart for meaning",
+    "Use 'ye', 'aye', 'me' naturally but not in every sentence -- this pirate has dignity",
+    "The Hofstadter unit stays named the Hofstadter unit",
+    "Do NOT add 'arr' or 'shiver me timbers' -- this is not a costume, it is a voice"
+  ]
+}

@@ -6,10 +6,12 @@ Assembles the essay from per-section source files, steered by VRGB
 coordinates via Qwen 2.5 7B Instruct (quantized, local Ollama).
 
 Usage:
-    python3 build.py                  # build to stdout
-    python3 build.py --out draft.md   # build to file
-    python3 build.py --verify         # verify output matches source sections
-    python3 build.py --substack       # build Substack-ready version with repo link
+    python3 build.py                          # build to stdout (verbatim)
+    python3 build.py --out draft.md           # build to file
+    python3 build.py --verify                 # verify output matches source
+    python3 build.py --substack               # Substack-ready with repo link
+    python3 build.py --voice pirate           # apply a voice filter
+    python3 build.py --voice pirate --out x   # voice filter to file
 """
 
 import argparse
@@ -27,11 +29,26 @@ DENSITY_PATH = os.path.join(REPO_DIR, "calibration", "density.json")
 
 MODEL = "qwen2.5:7b-instruct-q4_K_M"
 
+VOICES_DIR = os.path.join(REPO_DIR, "voices")
+
 REPO_URL = "https://github.com/nickcottrell/walking-in-color"
 
 # Import steering coordinates
 sys.path.insert(0, REPO_DIR)
 from steer_coordinates import COORDINATES, CALIBRATION
+
+
+def load_voice(voice_name):
+    """Load a voice filter definition."""
+    path = os.path.join(VOICES_DIR, "{}.json".format(voice_name))
+    if not os.path.exists(path):
+        print("Voice not found: {}".format(voice_name), file=sys.stderr)
+        print("Available voices:", file=sys.stderr)
+        for f in sorted(os.listdir(VOICES_DIR)):
+            if f.endswith(".json"):
+                print("  {}".format(f.replace(".json", "")), file=sys.stderr)
+        sys.exit(1)
+    return load_json(path)
 
 
 def load_json(path):
@@ -68,31 +85,79 @@ def ollama_generate(prompt, system_prompt=None):
     return result.stdout.strip()
 
 
-def build_system_prompt(section, coord, speculation, tone, density):
+def build_system_prompt(section, coord, speculation, tone, density, voice=None):
     """Build the steering prompt for a section."""
-    lines = [
-        "You are a precise editorial assistant.",
-        "Your task: reproduce the following essay section VERBATIM.",
-        "Do not alter, summarize, expand, or rephrase any text.",
-        "Output the section exactly as provided, word for word.",
-        "",
-        "Section steering context (for your awareness, not for modification):",
+    key = coord_key(section)
+
+    steering_block = "\n".join([
+        "Section steering context:",
         "  Title: {}".format(section["title"]),
         "  Role: {}".format(section["role"]),
         "  VRGB coordinate: {}".format(coord["hex"]),
         "  Tension: {:.1f}".format(coord["tension"]),
         "  Speculation: {:.1f}".format(coord["speculation"]),
         "  Speculation ceiling: {:.2f}".format(
-            speculation["per_section"][coord_key(section)]["ceiling"]
+            speculation["per_section"][key]["ceiling"]
         ),
         "  Tone: {} ({:.2f})".format(
-            tone["per_section"][coord_key(section)]["label"],
-            tone["per_section"][coord_key(section)]["tone"],
+            tone["per_section"][key]["label"],
+            tone["per_section"][key]["tone"],
         ),
-        "  Word budget: {}".format(density["per_section"][coord_key(section)]["words"]),
-        "",
-        "Reproduce the text below exactly. No additions. No omissions.",
-    ]
+        "  Word budget: {}".format(density["per_section"][key]["words"]),
+    ])
+
+    if voice is None:
+        # Verbatim mode
+        lines = [
+            "You are a precise editorial assistant.",
+            "Your task: reproduce the following essay section VERBATIM.",
+            "Do not alter, summarize, expand, or rephrase any text.",
+            "Output the section exactly as provided, word for word.",
+            "",
+            steering_block,
+            "",
+            "Reproduce the text below exactly. No additions. No omissions.",
+        ]
+    else:
+        # Voice filter mode
+        lines = [
+            "You are a skilled literary voice actor.",
+            "",
+            "VOICE FILTER: {}".format(voice["name"]),
+            "Description: {}".format(voice["description"]),
+            "Register: {}".format(voice["register"]),
+            "",
+            "RULES:",
+        ]
+        for rule in voice["rules"]:
+            lines.append("- {}".format(rule))
+        lines.append("")
+        lines.append(steering_block)
+        lines.append("")
+        lines.append(
+            "Rewrite the section below in the voice described above."
+        )
+        lines.append(
+            "Preserve the ARGUMENT and all FACTUAL CLAIMS exactly."
+        )
+        lines.append(
+            "Preserve the STRUCTURE (section title, paragraph breaks)."
+        )
+        lines.append(
+            "Transform the VOICE, REGISTER, and DICTION only."
+        )
+        lines.append(
+            "Respect the word budget: approximately {} words.".format(
+                density["per_section"][key]["words"]
+            )
+        )
+        lines.append(
+            "Respect the tension ({:.1f}) and speculation ({:.1f}) levels -- "
+            "grounded sections stay grounded, speculative sections can reach.".format(
+                coord["tension"], coord["speculation"]
+            )
+        )
+
     return "\n".join(lines)
 
 
@@ -101,7 +166,7 @@ def coord_key(section):
     return "{}_{}".format(section["id"], section["slug"].replace("-", "_"))
 
 
-def build_essay(use_model=True):
+def build_essay(use_model=True, voice=None):
     """Assemble the full essay from sections, optionally through Qwen."""
     schema = load_json(SCHEMA_PATH)
     speculation = load_json(SPECULATION_PATH)
@@ -109,17 +174,28 @@ def build_essay(use_model=True):
     density = load_json(DENSITY_PATH)
 
     parts = []
+    total = len(schema["sections"])
 
-    for section in schema["sections"]:
+    for i, section in enumerate(schema["sections"]):
         key = coord_key(section)
         coord = COORDINATES.get(key)
         source_text = load_section(section["id"], section["slug"].replace("-", "_"))
 
         if use_model:
-            sys_prompt = build_system_prompt(
-                section, coord, speculation, tone, density
+            label = voice["name"] if voice else "verbatim"
+            print(
+                "[{}/{}] {} ({})".format(i + 1, total, section["title"], label),
+                file=sys.stderr,
             )
-            prompt = "Reproduce this section verbatim:\n\n{}".format(source_text)
+            sys_prompt = build_system_prompt(
+                section, coord, speculation, tone, density, voice=voice
+            )
+            if voice:
+                prompt = "Rewrite this section in the voice described:\n\n{}".format(
+                    source_text
+                )
+            else:
+                prompt = "Reproduce this section verbatim:\n\n{}".format(source_text)
             output = ollama_generate(prompt, system_prompt=sys_prompt)
         else:
             output = source_text
@@ -190,9 +266,17 @@ def main():
         action="store_true",
         help="Skip Ollama/Qwen, concatenate sections directly",
     )
+    parser.add_argument(
+        "--voice",
+        help="Apply a voice filter (e.g. pirate, noir, academic)",
+    )
     args = parser.parse_args()
 
     use_model = not args.no_model
+    voice = None
+    if args.voice:
+        voice = load_voice(args.voice)
+        use_model = True  # voice filter requires the model
 
     if args.verify:
         # Verify always uses direct concatenation (the source of truth)
@@ -200,7 +284,7 @@ def main():
         verify(essay)
         return
 
-    essay = build_essay(use_model=use_model)
+    essay = build_essay(use_model=use_model, voice=voice)
 
     if args.substack:
         essay = build_substack(essay)
