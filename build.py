@@ -3,7 +3,15 @@
 Walking Through Color -- Build Script
 
 Assembles the essay from per-section source files, steered by VRGB
-coordinates via Qwen 2.5 7B Instruct (quantized, local Ollama).
+coordinates via a local or cloud LLM backend.
+
+Backends:
+    ollama   -- Qwen 2.5 7B Instruct Q4 (local, default)
+    openai   -- gpt-4o-mini via OpenAI API (cloud, for Codex/CI)
+
+Set backend via env var or --backend flag:
+    export WALKING_BACKEND=openai
+    export OPENAI_API_KEY=sk-...
 
 Usage:
     python3 build.py                          # build to stdout (verbatim)
@@ -11,7 +19,7 @@ Usage:
     python3 build.py --verify                 # verify output matches source
     python3 build.py --substack               # Substack-ready with repo link
     python3 build.py --voice pirate           # apply a voice filter
-    python3 build.py --voice pirate --out x   # voice filter to file
+    python3 build.py --backend openai         # use OpenAI instead of Ollama
 """
 
 import argparse
@@ -28,20 +36,52 @@ SCHEMA_PATH = os.path.join(REPO_DIR, "schema.json")
 SPECULATION_PATH = os.path.join(REPO_DIR, "calibration", "speculation.json")
 TONE_PATH = os.path.join(REPO_DIR, "calibration", "tone.json")
 DENSITY_PATH = os.path.join(REPO_DIR, "calibration", "density.json")
-
-MODEL = "qwen2.5:7b-instruct-q4_K_M"
-OLLAMA_URL = "http://localhost:11434/api/generate"
-SEED = 42
-TEMPERATURE = 0.0
-
 VOICES_DIR = os.path.join(REPO_DIR, "voices")
-
 REPO_URL = "https://github.com/nickcottrell/walking-in-color"
 
+# ---------------------------------------------------------------------------
+# Backend configuration
+# ---------------------------------------------------------------------------
+
+BACKENDS = {
+    "ollama": {
+        "model": "qwen2.5:7b-instruct-q4_K_M",
+        "url": "http://localhost:11434/api/generate",
+        "seed": 42,
+        "temperature": 0.0,
+        "description": "Qwen 2.5 7B Instruct, 4-bit quantized, local CPU",
+    },
+    "openai": {
+        "model": "gpt-4o-mini",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "seed": 42,
+        "temperature": 0.0,
+        "description": "GPT-4o-mini via OpenAI API, deterministic seed",
+    },
+}
+
+
+def get_backend():
+    """Resolve which backend to use from env or default."""
+    name = os.environ.get("WALKING_BACKEND", "ollama")
+    if name not in BACKENDS:
+        print("Unknown backend: {}".format(name), file=sys.stderr)
+        print("Available: {}".format(", ".join(BACKENDS.keys())), file=sys.stderr)
+        sys.exit(1)
+    return name, BACKENDS[name]
+
+
+# ---------------------------------------------------------------------------
 # Import steering coordinates
+# ---------------------------------------------------------------------------
+
 sys.path.insert(0, REPO_DIR)
 from steer_coordinates import COORDINATES, CALIBRATION
 
+
+# ---------------------------------------------------------------------------
+# File loaders
+# ---------------------------------------------------------------------------
 
 def load_voice(voice_name):
     """Load a voice filter definition."""
@@ -69,15 +109,19 @@ def load_section(section_id, slug):
         return f.read().strip()
 
 
-def ollama_generate(prompt, system_prompt=None):
+# ---------------------------------------------------------------------------
+# Generation backends
+# ---------------------------------------------------------------------------
+
+def ollama_generate(prompt, system_prompt=None, backend=None):
     """Call Qwen via Ollama HTTP API. Deterministic: seed pinned, temperature zero."""
     payload = {
-        "model": MODEL,
+        "model": backend["model"],
         "prompt": prompt,
         "stream": False,
         "options": {
-            "seed": SEED,
-            "temperature": TEMPERATURE,
+            "seed": backend["seed"],
+            "temperature": backend["temperature"],
             "top_k": 1,
             "top_p": 0.0,
             "repeat_penalty": 1.0,
@@ -91,7 +135,7 @@ def ollama_generate(prompt, system_prompt=None):
 
     data = json.dumps(payload).encode("utf-8")
     req = urllib.request.Request(
-        OLLAMA_URL,
+        backend["url"],
         data=data,
         headers={"Content-Type": "application/json"},
     )
@@ -107,6 +151,63 @@ def ollama_generate(prompt, system_prompt=None):
         print("Unexpected Ollama response: {}".format(body), file=sys.stderr)
         sys.exit(1)
 
+
+def openai_generate(prompt, system_prompt=None, backend=None):
+    """Call OpenAI chat completions API. Deterministic: seed pinned, temperature zero."""
+    api_key = os.environ.get("OPENAI_API_KEY", "")
+    if not api_key:
+        print("OPENAI_API_KEY not set.", file=sys.stderr)
+        print("export OPENAI_API_KEY=sk-...", file=sys.stderr)
+        sys.exit(1)
+
+    messages = []
+    if system_prompt:
+        messages.append({"role": "system", "content": system_prompt})
+    messages.append({"role": "user", "content": prompt})
+
+    payload = {
+        "model": backend["model"],
+        "messages": messages,
+        "temperature": backend["temperature"],
+        "seed": backend["seed"],
+        "top_p": 1.0,
+        "max_tokens": 2048,
+    }
+
+    data = json.dumps(payload).encode("utf-8")
+    req = urllib.request.Request(
+        backend["url"],
+        data=data,
+        headers={
+            "Content-Type": "application/json",
+            "Authorization": "Bearer {}".format(api_key),
+        },
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=180) as resp:
+            body = json.loads(resp.read().decode("utf-8"))
+            return body["choices"][0]["message"]["content"].strip()
+    except urllib.error.URLError as e:
+        print("OpenAI API error: {}".format(e), file=sys.stderr)
+        sys.exit(1)
+    except (KeyError, IndexError):
+        print("Unexpected OpenAI response: {}".format(
+            json.dumps(body, indent=2)[:500]
+        ), file=sys.stderr)
+        sys.exit(1)
+
+
+def generate(prompt, system_prompt=None, backend_name=None, backend=None):
+    """Route to the correct backend."""
+    if backend_name == "openai":
+        return openai_generate(prompt, system_prompt=system_prompt, backend=backend)
+    else:
+        return ollama_generate(prompt, system_prompt=system_prompt, backend=backend)
+
+
+# ---------------------------------------------------------------------------
+# Steering prompt builder
+# ---------------------------------------------------------------------------
 
 def build_system_prompt(section, coord, speculation, tone, density, voice=None):
     """Build the steering prompt for a section."""
@@ -130,7 +231,6 @@ def build_system_prompt(section, coord, speculation, tone, density, voice=None):
     ])
 
     if voice is None:
-        # Verbatim mode
         lines = [
             "You are a precise editorial assistant.",
             "Your task: reproduce the following essay section VERBATIM.",
@@ -142,7 +242,6 @@ def build_system_prompt(section, coord, speculation, tone, density, voice=None):
             "Reproduce the text below exactly. No additions. No omissions.",
         ]
     else:
-        # Voice filter mode
         lines = [
             "You are a skilled literary voice actor.",
             "",
@@ -189,8 +288,12 @@ def coord_key(section):
     return "{}_{}".format(section["id"], section["slug"].replace("-", "_"))
 
 
-def build_essay(use_model=True, voice=None):
-    """Assemble the full essay from sections, optionally through Qwen."""
+# ---------------------------------------------------------------------------
+# Build pipeline
+# ---------------------------------------------------------------------------
+
+def build_essay(use_model=True, voice=None, backend_name="ollama", backend=None):
+    """Assemble the full essay from sections, optionally through a model."""
     schema = load_json(SCHEMA_PATH)
     speculation = load_json(SPECULATION_PATH)
     tone = load_json(TONE_PATH)
@@ -207,7 +310,9 @@ def build_essay(use_model=True, voice=None):
         if use_model:
             label = voice["name"] if voice else "verbatim"
             print(
-                "[{}/{}] {} ({})".format(i + 1, total, section["title"], label),
+                "[{}/{}] {} ({}) [{}]".format(
+                    i + 1, total, section["title"], label, backend_name
+                ),
                 file=sys.stderr,
             )
             sys_prompt = build_system_prompt(
@@ -219,7 +324,12 @@ def build_essay(use_model=True, voice=None):
                 )
             else:
                 prompt = "Reproduce this section verbatim:\n\n{}".format(source_text)
-            output = ollama_generate(prompt, system_prompt=sys_prompt)
+            output = generate(
+                prompt,
+                system_prompt=sys_prompt,
+                backend_name=backend_name,
+                backend=backend,
+            )
         else:
             output = source_text
 
@@ -254,7 +364,6 @@ def verify(essay_text):
         print("PASS: built output matches source sections verbatim.")
         return True
     else:
-        # Find first divergence
         built_lines = essay_text.strip().splitlines()
         expected_lines = expected.strip().splitlines()
         for i, (b, e) in enumerate(zip(built_lines, expected_lines)):
@@ -270,6 +379,10 @@ def verify(essay_text):
             return False
         return True
 
+
+# ---------------------------------------------------------------------------
+# CLI
+# ---------------------------------------------------------------------------
 
 def main():
     parser = argparse.ArgumentParser(description="Build Walking Through Color essay")
@@ -287,27 +400,47 @@ def main():
     parser.add_argument(
         "--no-model",
         action="store_true",
-        help="Skip Ollama/Qwen, concatenate sections directly",
+        help="Skip model, concatenate sections directly",
     )
     parser.add_argument(
         "--voice",
         help="Apply a voice filter (e.g. pirate, noir, academic)",
     )
+    parser.add_argument(
+        "--backend",
+        choices=list(BACKENDS.keys()),
+        help="Model backend (default: WALKING_BACKEND env or ollama)",
+    )
     args = parser.parse_args()
+
+    backend_name = args.backend or os.environ.get("WALKING_BACKEND", "ollama")
+    if backend_name not in BACKENDS:
+        print("Unknown backend: {}".format(backend_name), file=sys.stderr)
+        sys.exit(1)
+    backend = BACKENDS[backend_name]
 
     use_model = not args.no_model
     voice = None
     if args.voice:
         voice = load_voice(args.voice)
-        use_model = True  # voice filter requires the model
+        use_model = True
 
     if args.verify:
-        # Verify always uses direct concatenation (the source of truth)
         essay = build_essay(use_model=False)
         verify(essay)
         return
 
-    essay = build_essay(use_model=use_model, voice=voice)
+    print(
+        "Backend: {} ({})".format(backend_name, backend["description"]),
+        file=sys.stderr,
+    )
+
+    essay = build_essay(
+        use_model=use_model,
+        voice=voice,
+        backend_name=backend_name,
+        backend=backend,
+    )
 
     if args.substack:
         essay = build_substack(essay)
