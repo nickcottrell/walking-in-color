@@ -1,4 +1,4 @@
-# Walking Through Color -- per-section VRGB steering coordinates
+# Walking In Color -- per-section VRGB steering coordinates
 #
 # Each section maps to a hex coordinate in RGB space.
 # The arc traces a loop: warm/grounded -> biological spectrum ->
@@ -120,7 +120,7 @@ def get_arc():
 
 
 if __name__ == "__main__":
-    print("Walking Through Color -- Steering Coordinate Map")
+    print("Walking In Color -- Steering Coordinate Map")
     print("=" * 55)
     for section_id, coord in COORDINATES.items():
         print(

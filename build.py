@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Walking Through Color -- Build Script
+Walking In Color -- Build Script
 
 Assembles the essay from per-section source files, steered by VRGB
 coordinates via a local or cloud LLM backend.
@@ -23,7 +23,6 @@ Usage:
 """
 
 import argparse
-import hashlib
 import json
 import os
 import sys
@@ -87,22 +86,12 @@ BACKENDS = {
 }
 
 
-def get_backend():
-    """Resolve which backend to use from env or default."""
-    name = os.environ.get("WALKING_BACKEND", "ollama")
-    if name not in BACKENDS:
-        print("Unknown backend: {}".format(name), file=sys.stderr)
-        print("Available: {}".format(", ".join(BACKENDS.keys())), file=sys.stderr)
-        sys.exit(1)
-    return name, BACKENDS[name]
-
-
 # ---------------------------------------------------------------------------
 # Import steering coordinates
 # ---------------------------------------------------------------------------
 
 sys.path.insert(0, REPO_DIR)
-from steer_coordinates import COORDINATES, CALIBRATION
+from steer_coordinates import COORDINATES
 
 
 # ---------------------------------------------------------------------------
@@ -110,8 +99,13 @@ from steer_coordinates import COORDINATES, CALIBRATION
 # ---------------------------------------------------------------------------
 
 def load_voice(voice_name):
-    """Load a voice filter definition."""
-    path = os.path.join(VOICES_DIR, "{}.json".format(voice_name))
+    """Load a voice filter definition. Sanitized against path traversal."""
+    safe_name = os.path.basename(voice_name)
+    path = os.path.join(VOICES_DIR, "{}.json".format(safe_name))
+    resolved = os.path.realpath(path)
+    if not resolved.startswith(os.path.realpath(VOICES_DIR)):
+        print("Invalid voice name: {}".format(voice_name), file=sys.stderr)
+        sys.exit(1)
     if not os.path.exists(path):
         print("Voice not found: {}".format(voice_name), file=sys.stderr)
         print("Available voices:", file=sys.stderr)
@@ -457,7 +451,7 @@ def verify(essay_text):
 # ---------------------------------------------------------------------------
 
 def main():
-    parser = argparse.ArgumentParser(description="Build Walking Through Color essay")
+    parser = argparse.ArgumentParser(description="Build Walking In Color essay")
     parser.add_argument("--out", help="Output file path")
     parser.add_argument(
         "--verify",

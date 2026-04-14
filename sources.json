@@ -12,11 +12,11 @@
     {
       "key": "nagaoka-canine-nasal",
       "section": "s02_dogs_computation",
-      "title": "3D X-ray CT and fluid dynamics simulation of canine nasal cavity airflow",
+      "title": "Beagle model analysis of fluid dynamics in canine olfactory epithelium for enhanced gas sensing",
       "authors": "Nagaoka University of Technology researchers",
-      "journal": "Frontiers in Physics",
+      "journal": "ScienceDirect",
       "finding": "Three simultaneous airflow routes in dog nasal cavity: fast (gas exchange), slow (humidification), turbulent (odor collection via turbinates).",
-      "file": "fphy-09-731405.pdf"
+      "file": "1-s2.0-S3050475925007146-main.pdf"
     },
     {
       "key": "princeton-hummingbird",
@@ -31,10 +31,11 @@
     {
       "key": "quanzhou-vlc-wdm",
       "section": "s04_what_engineers_found",
-      "title": "Visible light communication using RGB wavelength division multiplexing",
+      "title": "A Cost-Efficient RGB Laser-Based Visible Light Communication System by Incorporating Hybrid Wavelength and Polarization Division Multiplexing Schemes",
       "authors": "Quanzhou Normal University researcher",
+      "journal": "Frontiers in Physics",
       "finding": "60 Gbps over 500m fiber using three RGB laser diodes (650nm, 530nm, 450nm) with polarization multiplexing. Three orthogonal wavelengths = independent channels.",
-      "file": "1-s2.0-S3050475925007146-main.pdf"
+      "file": "fphy-09-731405.pdf"
     },
     {
       "key": "vrgb-whitepaper",

@@ -1,4 +1,4 @@
-Walking Through Color
+Walking In Color
 
 There's a stretch of sidewalk on Sienna Parkway where the jacarandas hang low enough that Jack Jack has to duck. He doesn't mind. He's a seventy-pound Standard Poodle with the posture of a show horse and the curiosity of a lab tech -- nose down, scanning everything, processing the world one square foot at a time.
 
