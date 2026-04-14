@@ -1,4 +1,4 @@
-# Walking Through Color
+# Walking In Color
 
 An essay about orthogonal channel architectures -- in a dog's nose, a bird's eye, a shrimp's parallel lookup table, an optical fiber, and a hex color coordinate system called VRGB.
 
