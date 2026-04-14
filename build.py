@@ -44,19 +44,45 @@ REPO_URL = "https://github.com/nickcottrell/walking-in-color"
 # ---------------------------------------------------------------------------
 
 BACKENDS = {
+    # --- Local (Ollama) ---
     "ollama": {
         "model": "qwen2.5:7b-instruct-q4_K_M",
         "url": "http://localhost:11434/api/generate",
         "seed": 42,
         "temperature": 0.0,
+        "api": "ollama",
+        "tier": "baseline",
         "description": "Qwen 2.5 7B Instruct, 4-bit quantized, local CPU",
     },
+    # --- OpenAI: baseline (Codex default) ---
     "openai": {
         "model": "gpt-4o-mini",
         "url": "https://api.openai.com/v1/chat/completions",
         "seed": 42,
         "temperature": 0.0,
-        "description": "GPT-4o-mini via OpenAI API, deterministic seed",
+        "api": "openai",
+        "tier": "baseline",
+        "description": "GPT-4o-mini via OpenAI API",
+    },
+    # --- OpenAI: stretch ---
+    "openai-4o": {
+        "model": "gpt-4o",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "seed": 42,
+        "temperature": 0.0,
+        "api": "openai",
+        "tier": "stretch",
+        "description": "GPT-4o via OpenAI API (stretch benchmark)",
+    },
+    # --- Anthropic: stretch ---
+    "anthropic": {
+        "model": "claude-sonnet-4-6",
+        "url": "https://api.anthropic.com/v1/messages",
+        "seed": 42,
+        "temperature": 0.0,
+        "api": "anthropic",
+        "tier": "stretch",
+        "description": "Claude Sonnet 4.6 via Anthropic API (stretch benchmark)",
     },
 }
 
@@ -197,10 +223,56 @@ def openai_generate(prompt, system_prompt=None, backend=None):
         sys.exit(1)
 
 
+def anthropic_generate(prompt, system_prompt=None, backend=None):
+    """Call Anthropic messages API. Deterministic: temperature zero."""
+    api_key = os.environ.get("ANTHROPIC_API_KEY", "")
+    if not api_key:
+        print("ANTHROPIC_API_KEY not set.", file=sys.stderr)
+        print("export ANTHROPIC_API_KEY=sk-ant-...", file=sys.stderr)
+        sys.exit(1)
+
+    messages = [{"role": "user", "content": prompt}]
+
+    payload = {
+        "model": backend["model"],
+        "messages": messages,
+        "temperature": backend["temperature"],
+        "max_tokens": 2048,
+    }
+    if system_prompt:
+        payload["system"] = system_prompt
+
+    data = json.dumps(payload).encode("utf-8")
+    req = urllib.request.Request(
+        backend["url"],
+        data=data,
+        headers={
+            "Content-Type": "application/json",
+            "x-api-key": api_key,
+            "anthropic-version": "2023-06-01",
+        },
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=180) as resp:
+            body = json.loads(resp.read().decode("utf-8"))
+            return body["content"][0]["text"].strip()
+    except urllib.error.URLError as e:
+        print("Anthropic API error: {}".format(e), file=sys.stderr)
+        sys.exit(1)
+    except (KeyError, IndexError):
+        print("Unexpected Anthropic response: {}".format(
+            json.dumps(body, indent=2)[:500]
+        ), file=sys.stderr)
+        sys.exit(1)
+
+
 def generate(prompt, system_prompt=None, backend_name=None, backend=None):
     """Route to the correct backend."""
-    if backend_name == "openai":
+    api = backend.get("api", backend_name)
+    if api == "openai":
         return openai_generate(prompt, system_prompt=system_prompt, backend=backend)
+    elif api == "anthropic":
+        return anthropic_generate(prompt, system_prompt=system_prompt, backend=backend)
     else:
         return ollama_generate(prompt, system_prompt=system_prompt, backend=backend)
 
