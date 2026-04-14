@@ -1,11 +1,12 @@
 {
-  "backlog_version": "1.0.0",
-  "philosophy": "Each wave targets a specific unknown. Wave N+1 is shaped by Wave N results. 10 tasks per wave. The backlog is always open -- new tasks can be added between waves.",
+  "backlog_version": "2.0.0",
+  "philosophy": "Each wave targets a specific unknown. Waves can run in parallel -- each is a standalone Codex task producing its own PR. 10 tasks per wave. The backlog is always open.",
   "waves": [
     {
       "wave": 1,
       "unknown": "Does the pipeline actually work as claimed?",
-      "status": "ready",
+      "status": "complete",
+      "pr": "#1",
       "description": "Mechanical verification. Can Codex break the determinism, the verbatim fidelity, the schema consistency, or the build system? This is the foundation -- if wave 1 fails, nothing else matters.",
       "tasks": [
         {
@@ -63,7 +64,7 @@
     {
       "wave": 2,
       "unknown": "Does the voice filter system preserve the argument?",
-      "status": "blocked_by_wave_1",
+      "status": "ready",
       "description": "Semantic verification. Can Codex find a voice that destroys facts, collapses structure, or produces incoherent output? This tests whether the steering coordinates actually control generation or are decorative.",
       "tasks": [
         {

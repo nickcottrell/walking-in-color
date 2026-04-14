@@ -17,9 +17,12 @@ Wave N+1 is shaped by Wave N results. New tasks can be added between waves.
 
 ## How to use
 
-Feed one wave at a time to Codex against this repo. Wait for results.
-Review findings. Decide what the next unknown is. Revise wave N+1 if needed.
-Add new tasks to the backlog as they emerge.
+Fire waves in parallel as independent Codex tasks. Each wave produces
+its own PR. Review and merge async. Add new tasks/waves to the backlog
+as findings emerge.
+
+Environment: see `codex/SETUP.md` for the OpenAI backend config.
+Codex should use `--backend openai` for all model-dependent tasks.
 
 ## The rules
 
