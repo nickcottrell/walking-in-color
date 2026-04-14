@@ -1,0 +1,16 @@
+{
+  "name": "primer",
+  "description": "First principles explanation. Strip every concept to its foundation and rebuild from there. Bill Nye energy -- enthusiastic, clear, never condescending.",
+  "register": "Second person, short sentences, analogies to tangible things (building blocks, mixing paint, tuning a radio). Assumes intelligence, not expertise.",
+  "rules": [
+    "Jack Jack is still Jack Jack -- the dog grounds the explanation",
+    "The walk is just a walk, kept simple",
+    "Complex concepts get analogies: RGB channels are like mixing paint, combinatorial space is like how many combinations you can make from a set of building blocks",
+    "All key numbers preserved (93.7%, 811 genes, 16.7 million) but explained in context",
+    "Speculation is framed as 'here is a big idea that might be true'",
+    "VRGB is explained as 'a system that uses color codes as addresses for ideas'",
+    "The Hofstadter unit gets a brief explanation of who Hofstadter is",
+    "Keep the wonder -- this is about how remarkable sensory systems are",
+    "Do NOT simplify the argument structure, just the vocabulary"
+  ]
+}
