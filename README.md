@@ -38,7 +38,7 @@ python3 steer_coordinates.py
 
 Four independent systems -- human trichromatic vision, canine olfactory computation, hummingbird tetrachromacy, and engineered wavelength division multiplexing -- all converge on the same architecture: orthogonal channels generating high-dimensional information space from a limited substrate.
 
-VRGB (Visual RGB) uses the 16.7 million positions in hex color space as semantic coordinates. The essay argues this isn't arbitrary -- it's building in the native dimensionality of human perception, using a principle that evolution and engineering discovered independently.
+VRGB (Virtual RGB) uses the 16.7 million positions in hex color space as semantic coordinates. The essay argues this isn't arbitrary -- it's building in the native dimensionality of human perception, using a principle that evolution and engineering discovered independently.
 
 ## Sources
 
