@@ -5,7 +5,7 @@
 # engineering convergence -> speculative peak -> warm return.
 #
 # Coordinate rationale encoded in comments.
-# Speculation ceiling: HIGH (global, per cue-vox session 2026-04-13)
+# Speculation ceiling: HIGH (global, per calibration session 2026-04-13)
 
 COORDINATES = {
     # Opening: warm terracotta -- sodium streetlight, the walk, grounded in body
@@ -97,7 +97,7 @@ COORDINATES = {
     },
 }
 
-# Global calibration from cue-vox session 2026-04-13
+# Global calibration from session 2026-04-13
 CALIBRATION = {
     "speculation_ceiling": "high",
     "speculation_slider": 62,

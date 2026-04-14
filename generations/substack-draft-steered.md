@@ -1,4 +1,5 @@
 Walking Through Color
+
 There's a stretch of sidewalk on Sienna Parkway where the jacarandas hang low enough that Jack Jack has to duck. He doesn't mind. He's a seventy-pound Standard Poodle with the posture of a show horse and the curiosity of a lab tech -- nose down, scanning everything, processing the world one square foot at a time.
 
 I walk him most evenings through Ladera Ranch, usually because I've been staring at a screen for too long and my brain has started doing that thing where it multiplexes too hard and nothing resolves. You know the feeling. Too many tabs. Too many threads. The sensation of running parallel processes that are somehow all failing simultaneously. I go outside to stop thinking. It never works. The thinking just relocates.
@@ -152,3 +153,9 @@ You just need to notice that the channels are there, that they're orthogonal, an
 Jack Jack sits at the front door, patient and handsome, waiting for me to catch up.
 
 I always do.
+
+---
+
+This essay was built with a VRGB generative architecture -- per-section steering coordinates encoding the argument's emotional and conceptual arc in hex color space.
+
+Source, schema, and steering coordinates: [https://github.com/nickcottrell/walking-in-color](https://github.com/nickcottrell/walking-in-color)
