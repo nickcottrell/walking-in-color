@@ -15,10 +15,12 @@ Usage:
 """
 
 import argparse
+import hashlib
 import json
 import os
-import subprocess
 import sys
+import urllib.request
+import urllib.error
 
 REPO_DIR = os.path.dirname(os.path.abspath(__file__))
 SECTIONS_DIR = os.path.join(REPO_DIR, "sections")
@@ -28,6 +30,9 @@ TONE_PATH = os.path.join(REPO_DIR, "calibration", "tone.json")
 DENSITY_PATH = os.path.join(REPO_DIR, "calibration", "density.json")
 
 MODEL = "qwen2.5:7b-instruct-q4_K_M"
+OLLAMA_URL = "http://localhost:11434/api/generate"
+SEED = 42
+TEMPERATURE = 0.0
 
 VOICES_DIR = os.path.join(REPO_DIR, "voices")
 
@@ -65,24 +70,41 @@ def load_section(section_id, slug):
 
 
 def ollama_generate(prompt, system_prompt=None):
-    """Call Qwen via Ollama API."""
-    cmd = ["ollama", "run", MODEL]
-    full_prompt = ""
+    """Call Qwen via Ollama HTTP API. Deterministic: seed pinned, temperature zero."""
+    payload = {
+        "model": MODEL,
+        "prompt": prompt,
+        "stream": False,
+        "options": {
+            "seed": SEED,
+            "temperature": TEMPERATURE,
+            "top_k": 1,
+            "top_p": 0.0,
+            "repeat_penalty": 1.0,
+            "num_predict": 2048,
+            "num_thread": 1,
+        },
+    }
     if system_prompt:
-        full_prompt = system_prompt + "\n\n"
-    full_prompt += prompt
+        payload["system"] = system_prompt
 
-    result = subprocess.run(
-        cmd,
-        input=full_prompt,
-        capture_output=True,
-        text=True,
-        timeout=120,
+    data = json.dumps(payload).encode("utf-8")
+    req = urllib.request.Request(
+        OLLAMA_URL,
+        data=data,
+        headers={"Content-Type": "application/json"},
     )
-    if result.returncode != 0:
-        print("Ollama error: {}".format(result.stderr), file=sys.stderr)
+    try:
+        with urllib.request.urlopen(req, timeout=180) as resp:
+            body = json.loads(resp.read().decode("utf-8"))
+            return body["response"].strip()
+    except urllib.error.URLError as e:
+        print("Ollama not reachable: {}".format(e), file=sys.stderr)
+        print("Start Ollama first: ollama serve", file=sys.stderr)
         sys.exit(1)
-    return result.stdout.strip()
+    except KeyError:
+        print("Unexpected Ollama response: {}".format(body), file=sys.stderr)
+        sys.exit(1)
 
 
 def build_system_prompt(section, coord, speculation, tone, density, voice=None):
