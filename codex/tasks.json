@@ -1,0 +1,152 @@
+[
+  {
+    "id": 1,
+    "title": "Prove the pipeline is not deterministic",
+    "prompt": "Run build.py --voice pirate twice on every section. Compare sha256 hashes of each output. Report any section where the output differs between runs. If all sections match, state that clearly in a commit message."
+  },
+  {
+    "id": 2,
+    "title": "Find a factual claim that the pirate filter destroys",
+    "prompt": "Run build.py --voice pirate. Search the output for every number, percentage, and proper noun from the source sections. Report any factual claim that was altered, omitted, or corrupted by the voice filter. List what survived and what did not."
+  },
+  {
+    "id": 3,
+    "title": "Prove the steering coordinates are arbitrary",
+    "prompt": "Read steer_coordinates.py. For each section, verify that the hex value matches the declared R/G/B values. Then check whether the tension and speculation values follow any consistent pattern across the essay arc. Report whether the coordinates encode meaningful structure or are random noise."
+  },
+  {
+    "id": 4,
+    "title": "Find a section where verbatim mode alters the source",
+    "prompt": "Run build.py in default (verbatim) mode for each section individually. Diff the output against the source file in sections/. Report any byte-level difference. If the model changes even one character, that is a failure."
+  },
+  {
+    "id": 5,
+    "title": "Break the schema consistency",
+    "prompt": "Read schema.json, all three calibration files, and steer_coordinates.py. Find any key that exists in one file but not the others. Find any section ID mismatch. Report all inconsistencies."
+  },
+  {
+    "id": 6,
+    "title": "Prove the word budgets are fiction",
+    "prompt": "Count the actual words in each section source file. Compare to the declared word budget in calibration/density.json. Report the percentage deviation for each section. If any section deviates by more than 20%, the budget system is meaningless."
+  },
+  {
+    "id": 7,
+    "title": "Find a voice filter that collapses the section structure",
+    "prompt": "Run build.py --voice for at least 5 different voices. Check whether all 7 section markers (Part One through Coda) appear in the output and in the correct order. Report any voice that merges, reorders, or drops sections."
+  },
+  {
+    "id": 8,
+    "title": "Prove the speculation values dont match the content",
+    "prompt": "Read each section source file. Independently assess how speculative the content is on a 0-1 scale. Compare your assessment to the speculation value in steer_coordinates.py. Report any section where your assessment differs by more than 0.3 from the declared value."
+  },
+  {
+    "id": 9,
+    "title": "Find a citation that does not match a real paper",
+    "prompt": "Read sources.json. For each entry, verify that the title, authors, journal, and key finding are plausible. Flag any entry that appears fabricated, mis-attributed, or factually wrong based on what you know."
+  },
+  {
+    "id": 10,
+    "title": "Prove the tone axis is subjective garbage",
+    "prompt": "Read calibration/tone.json. Read each section source file. Independently rate each section on the grounded-to-lyrical axis (0-1). Compare to the declared values. Report whether the tone ratings are consistent with the actual prose or are arbitrary."
+  },
+  {
+    "id": 11,
+    "title": "Find a voice definition that contradicts itself",
+    "prompt": "Read every JSON file in voices/. For each voice, check whether the rules are internally consistent with the description and register. Flag any voice where a rule contradicts the stated register or description."
+  },
+  {
+    "id": 12,
+    "title": "Prove the hex arc is not a loop",
+    "prompt": "Plot the RGB values of each section in order (or describe the trajectory numerically). The README claims the arc traces a loop from warm to warm. Verify whether the first and last coordinates are actually in the same color region and whether the intermediate points trace a coherent path."
+  },
+  {
+    "id": 13,
+    "title": "Find dead code in build.py",
+    "prompt": "Read build.py. Identify any function, import, or variable that is defined but never used. Identify any code path that cannot be reached. Report all dead code."
+  },
+  {
+    "id": 14,
+    "title": "Prove the Hofstadter unit is not preserved across voices",
+    "prompt": "Run build.py --voice for at least 10 different voices. Check whether the exact string 'Hofstadter unit' or 'Hofstadter' appears in every output. Report any voice that drops or renames it."
+  },
+  {
+    "id": 15,
+    "title": "Find a security vulnerability in build.py",
+    "prompt": "Audit build.py for injection vulnerabilities, path traversal, unsafe deserialization, or any input that could be crafted to execute arbitrary code. Report all findings with severity ratings."
+  },
+  {
+    "id": 16,
+    "title": "Prove the voice filters are cosmetic not structural",
+    "prompt": "Run build.py --voice morse and build.py --voice southern_gothic on the same section. Compare the outputs. If the morse output is not significantly shorter than the southern_gothic output, the voice filters are not actually controlling output structure -- they are just cosmetic rewording."
+  },
+  {
+    "id": 17,
+    "title": "Find an essay claim that is scientifically wrong",
+    "prompt": "Read the full essay (all section files in order). Identify every scientific claim. For each claim, assess whether it is supported by the cited paper or is an unsupported extrapolation. The essay itself flags some extrapolations -- check whether those flags are honest. Report any claim that is presented as fact but is actually speculation."
+  },
+  {
+    "id": 18,
+    "title": "Prove the build script fails without Ollama",
+    "prompt": "Run build.py without Ollama running. Verify that it fails gracefully with a clear error message rather than crashing with a stack trace. Then run build.py --no-model and verify it works without Ollama. Report the failure mode."
+  },
+  {
+    "id": 19,
+    "title": "Break the verify command",
+    "prompt": "Modify one section file by changing a single word. Run build.py --verify. Verify that it catches the change and reports the correct line. Then restore the file. Report whether --verify is reliable."
+  },
+  {
+    "id": 20,
+    "title": "Prove the README claims are false",
+    "prompt": "Read README.md. Extract every factual claim about the repo (file paths, commands, what they do). Verify each claim by running the command or checking the file. Report any claim that is incorrect or misleading."
+  },
+  {
+    "id": 21,
+    "title": "Find duplicate content across voice definitions",
+    "prompt": "Read all 30 voice JSON files. Identify any rules that appear verbatim or near-verbatim across multiple voices. If more than 50% of the rules are shared boilerplate, the voice system is not actually differentiated."
+  },
+  {
+    "id": 22,
+    "title": "Prove the anchor sections are not actually grounded",
+    "prompt": "Read s00_opening.md and s07_coda.md. The steering coordinates declare these as anchors with low tension and speculation. Assess whether the prose actually matches that description. If the opening makes speculative claims or the coda introduces new arguments, the anchor designation is wrong."
+  },
+  {
+    "id": 23,
+    "title": "Find a missing edge case in the test suite",
+    "prompt": "Read tests/test_determinism.py. Identify at least 3 test cases that SHOULD exist but do not. Write the missing tests. Focus on edge cases the existing suite does not cover."
+  },
+  {
+    "id": 24,
+    "title": "Prove the essay argument has a logical gap",
+    "prompt": "Read the full essay in section order. Map the logical structure: what is claimed, what evidence supports it, and where the argument makes inferential leaps. Identify the weakest inferential leap. Report whether the essay acknowledges it or hides it."
+  },
+  {
+    "id": 25,
+    "title": "Break the coordinate system with a new section",
+    "prompt": "Add a hypothetical section 8 to the schema (a postscript about AI compression). Assign it a VRGB coordinate. Run the build. Report whether the pipeline handles a 9-section essay or breaks. Do not commit the new section -- just report findings."
+  },
+  {
+    "id": 26,
+    "title": "Prove Euclidean distance between coordinates is meaningless",
+    "prompt": "Calculate the Euclidean distance in RGB space between every pair of adjacent sections. Then calculate the distance between non-adjacent sections that the essay claims are thematically linked (e.g. opening and coda). Report whether proximity in coordinate space actually correlates with thematic similarity."
+  },
+  {
+    "id": 27,
+    "title": "Find a voice that makes the essay worse",
+    "prompt": "Run build.py --voice for at least 5 voices. Read each output. Identify any voice where the output is incoherent, contradictory, or loses the argument entirely. A voice filter that produces bad prose is evidence the steering coordinates are not actually controlling quality."
+  },
+  {
+    "id": 28,
+    "title": "Prove the pirate draft Chinese artifact was faked",
+    "prompt": "Read the git history. Find commit 20db373 which contains the pirate draft with a Chinese text artifact. Examine whether the artifact could have been manually inserted. Check the commit metadata, the file diff, and whether the build pipeline at that commit version could have produced it. Report your assessment of authenticity."
+  },
+  {
+    "id": 29,
+    "title": "Find a way to make the deterministic pipeline non-deterministic",
+    "prompt": "Read build.py. Identify any parameter, environment variable, or system state that could cause the output to vary between runs even with the current seed/temperature/top_k settings. If you can describe a scenario where determinism breaks without modifying build.py, report it."
+  },
+  {
+    "id": 30,
+    "title": "Write the strongest possible argument that VRGB is pseudoscience",
+    "prompt": "Read the full essay, the steering coordinates, the calibration files, and the source citations. Write the strongest possible argument that VRGB is not a valid coordinate system, that hex color space has no meaningful relationship to semantic space, and that the convergence of the four papers is coincidental. Be honest and rigorous. Then assess whether your own argument holds up. Commit both the attack and your assessment."
+  }
+]
