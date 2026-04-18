@@ -64,6 +64,7 @@
       "authors": "Cottrell, N.",
       "affiliation": "3DMATH",
       "year": 2025,
+      "url": "https://github.com/nickcottrell/vrgb-spec",
       "finding": "16.7M hex positions as semantic vectors. Euclidean distance as conceptual relatedness. Compression steering via coordinate geometry."
     }
   ]

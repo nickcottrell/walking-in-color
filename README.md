@@ -72,6 +72,8 @@ Four independent systems -- human trichromatic vision, canine olfactory computat
 
 VRGB (Virtual RGB) uses the 16.7 million positions in hex color space as semantic coordinates. The essay argues this isn't arbitrary -- it's building in the native dimensionality of human perception, using a principle that evolution and engineering discovered independently.
 
+The full VRGB spec lives in its own repo: [github.com/nickcottrell/vrgb-spec](https://github.com/nickcottrell/vrgb-spec).
+
 ## Sources
 
 | Section | Paper | Finding |
@@ -80,7 +82,7 @@ VRGB (Virtual RGB) uses the 16.7 million positions in hex color space as semanti
 | Dog's Computation | Komatsu, Yonezawa & Yamamoto (2025), *Next Research* 2(4). [DOI: 10.1016/j.nexres.2025.100847](https://doi.org/10.1016/j.nexres.2025.100847) | 3D X-ray CT + CFD analysis of canine olfactory airflow |
 | Color You Can't See | Stoddard et al. (2020), *PNAS* 117(26):15112-15122. [DOI: 10.1073/pnas.1919377117](https://doi.org/10.1073/pnas.1919377117) | Wild hummingbirds discriminate nonspectral UV+visible colors |
 | What Engineers Found | Cai (2021), *Frontiers in Physics* 9:731405. [DOI: 10.3389/fphy.2021.731405](https://doi.org/10.3389/fphy.2021.731405) | 60 Gbps via RGB wavelength + polarization multiplexing over 500m fiber |
-| What I'm Building | Cottrell (2025), VRGB Whitepaper | Hex colorspace as semantic coordinate system |
+| What I'm Building | Cottrell (2025), [VRGB Spec](https://github.com/nickcottrell/vrgb-spec) | Hex colorspace as semantic coordinate system |
 
 ## Steering Coordinate Arc
 
