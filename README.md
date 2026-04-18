@@ -4,21 +4,42 @@ An essay about orthogonal channel architectures -- in a dog's nose, a bird's eye
 
 Written on a walk with a Standard Poodle named Jack Jack, through Ladera Ranch, California.
 
-## What This Is
+**Read the essay:** [nicholascottrell.substack.com/p/walking-in-color](https://nicholascottrell.substack.com/p/walking-in-color)
 
-This is an essay with a generative architecture. The source text lives in `sections/` as individual files, one per section. The steering system that shapes assembly lives alongside it:
+## What You're Looking At
 
-- **schema.json** -- section map, word budgets, structural roles
-- **steer_coordinates.py** -- per-section VRGB hex coordinates encoding the essay's emotional and conceptual arc
-- **calibration/** -- speculation ceiling, tone axis, density distribution per section
-- **sources.json** -- citation registry for the four research papers and one whitepaper
-- **build.py** -- assembles sections through Qwen 2.5 7B Instruct (quantized, local) with steering coordinates as system context
+An essay. And the rig that built it.
 
-The steering coordinates encode the argument's shape: warm and grounded at the edges, speculative at the peak, with a loop that returns you to the sidewalk where you started.
+The essay is human-written prose. The rig is the scaffolding around it -- a coordinate system, a set of calibration knobs, a model backend, and a voice layer -- that shapes how the prose gets assembled into a final draft. You can read the essay on Substack (link above). You can also pop the hood, pull it apart, and run it yourself.
+
+This is what VRGB looks like in the wild. The same three-orthogonal-channel idea the essay argues for is what's steering the essay's own assembly. The system is the argument.
+
+## Tour
+
+**sections/** -- Eight markdown files, one per part of the essay (s00 opening → s07 coda). The actual words. Edit here and the next build picks them up.
+
+**schema.json** -- The map. Section IDs, word budgets, structural roles (anchor / evidence / expansion / convergence / complication / synthesis), and arc metadata (where tension peaks, where emotion peaks, where convergence happens).
+
+**steer_coordinates.py** -- The VRGB coordinates. Every section gets a hex color plus two scalars: tension (0-1) and speculation (0-1). Red for the brain-RGB section because red is the first channel to fire. UV-leaning violet for the hummingbird section because that is literally the color you cannot see. Amber for the mantis shrimp because it is the tradeoff point. The coordinates are meaningful, not decorative.
+
+**calibration/** -- Three knobs per section, stored as JSON:
+- *speculation.json* -- ceiling on how far each section is allowed to reach beyond cited sources (0.10 in the opening, 0.85 at the mantis shrimp peak)
+- *tone.json* -- grounded-to-lyrical axis (0.30 for engineering precision, 0.85 for the coda)
+- *density.json* -- per-section word budgets that sum to the global target
+
+**voices/** -- Thirty-plus voice filter JSONs. Primer, academic, pirate, noir, zen, southern gothic, sagan, haiku, Shakespeare, stoner. Swap one in with --voice and the assembler rewrites every section in that register while preserving the argument. Most of them are jokes. Some of them surface things the default voice buries.
+
+**sources.json** -- The citation registry. Full author lists, DOIs, journal names, and the specific finding cited in each section. Every claim in the essay that takes a number from a paper is traceable from here.
+
+**build.py** -- The assembler. Reads sections, pulls their coordinates and calibration, pipes everything to a local Ollama model (Qwen 2.5 7B quantized, runs on a laptop) or to an OpenAI endpoint (for CI), and writes a draft. --verify mode confirms the output matches the source sections verbatim when no model is steering.
+
+**codex/** -- The adversarial audit trail. Three waves of reports where a separate agent tried to break the argument: pipeline determinism, voice-filter argument preservation, and thesis defensibility. The repo has survived all three.
+
+**generations/** -- Output drafts. Substack-ready, plain markdown, or voice-filtered.
 
 ## Build
 
-Requires [Ollama](https://ollama.ai) with `qwen2.5:7b-instruct-q4_K_M` pulled locally.
+Requires [Ollama](https://ollama.ai) with qwen2.5:7b-instruct-q4_K_M pulled locally.
 
 ```
 # Full steered build (runs each section through Qwen with VRGB coordinates)
@@ -32,7 +53,18 @@ python3 build.py --verify
 
 # Print the steering coordinate map
 python3 steer_coordinates.py
+
+# Run the essay through a voice filter
+python3 build.py --voice pirate --out generations/pirate-draft.md
+python3 build.py --voice sagan --out generations/sagan-draft.md
+python3 build.py --voice primer --out generations/primer-draft.md
 ```
+
+## Fork It
+
+Swap the prose, keep the rig. Drop your own sections into sections/, update schema.json with your word budgets, paint the arc in steer_coordinates.py, and rebuild. The rig does not care what you're writing about. It cares where the argument tightens, where it reaches, where it lands.
+
+If you ship something built on this, credit the coordinate system and tag the repo. If you take issue with a claim, the "Disagree?" section at the bottom is live.
 
 ## The Argument
 
@@ -44,11 +76,11 @@ VRGB (Virtual RGB) uses the 16.7 million positions in hex color space as semanti
 
 | Section | Paper | Finding |
 |---|---|---|
-| Brain's RGB | Fudan University, PeerJ | 93.7% EEG decoding of R/G/B, sequential timing (R:190ms, G:215ms, B:238ms) |
-| Dog's Computation | Nagaoka University, Frontiers in Physics | Three simultaneous nasal airflow routes via 3D X-ray CT |
-| Color You Can't See | Stoddard et al., PNAS 2020 | Wild hummingbirds discriminate nonspectral UV+visible colors |
-| What Engineers Found | Quanzhou Normal University | 60 Gbps via RGB wavelength division multiplexing over fiber |
-| What I'm Building | Cottrell, VRGB Whitepaper | Hex colorspace as semantic coordinate system |
+| Brain's RGB | Wu et al. (2023), *PeerJ Computer Science* 9:e1376. [DOI: 10.7717/peerj-cs.1376](https://doi.org/10.7717/peerj-cs.1376) | 93.7% EEG decoding of R/G/B, sequential peak latencies (R:190ms, G:215ms, B:238.5ms) |
+| Dog's Computation | Komatsu, Yonezawa & Yamamoto (2025), *Next Research* 2(4). [DOI: 10.1016/j.nexres.2025.100847](https://doi.org/10.1016/j.nexres.2025.100847) | 3D X-ray CT + CFD analysis of canine olfactory airflow |
+| Color You Can't See | Stoddard et al. (2020), *PNAS* 117(26):15112-15122. [DOI: 10.1073/pnas.1919377117](https://doi.org/10.1073/pnas.1919377117) | Wild hummingbirds discriminate nonspectral UV+visible colors |
+| What Engineers Found | Cai (2021), *Frontiers in Physics* 9:731405. [DOI: 10.3389/fphy.2021.731405](https://doi.org/10.3389/fphy.2021.731405) | 60 Gbps via RGB wavelength + polarization multiplexing over 500m fiber |
+| What I'm Building | Cottrell (2025), VRGB Whitepaper | Hex colorspace as semantic coordinate system |
 
 ## Steering Coordinate Arc
 
